@@ -21,6 +21,12 @@ struct TodoItem : Identifiable, Codable {
 }
 
 class TodoStorage: ObservableObject {
+    @Published var showImportantOnly: Bool = false {
+        didSet {
+            UserDefaults.standard.set(self.showImportantOnly, forKey: "showImportantOnly")
+        }
+    }
+
     @Published var toDos = [TodoItem]() {
         didSet {
             UserDefaults.standard.set(try? PropertyListEncoder().encode(toDos), forKey: "toDos")
@@ -33,5 +39,7 @@ class TodoStorage: ObservableObject {
                 toDos = userDefaultTodos
             }
         }
+
+        showImportantOnly = UserDefaults.standard.bool(forKey: "showImportantOnly")
     }
 }

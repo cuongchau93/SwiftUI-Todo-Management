@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct CreateTodoView: View {
-    @State var todoTitle = ""
-    @State var isImportant = false
+    @State var todoTitle: String = ""
+    @State var isImportant: Bool = false
+
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var todoStorage: TodoStorage
     
